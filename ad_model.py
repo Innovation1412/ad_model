@@ -47,7 +47,7 @@ def odefun(t, y, p):
     return [dS, dB, dG]
 
 # Streamlit App
-st.title("Anaerobic Digestion Model (ADModelApp)")
+st.title("Anaerobic Digestion Model")
 
 with st.sidebar:
     st.header("Initial Conditions")
@@ -61,14 +61,14 @@ with st.sidebar:
     K_I = st.number_input("K_I", value=250.0)
     K_C = st.number_input("K_C", value=3.5)
     K_T = st.number_input("K_T", value=15.0)
-    k = st.number_input("k (linear rate)", value=0.05)
-    Y_b = st.number_input("Y_b (biomass yield)", value=0.3)
+    k = st.number_input("k", value=0.05)
+    Y_b = st.number_input("Y_b", value=0.3)
     kinetics = st.selectbox("Kinetics", [
         'monod', 'linear', 'haldane', 'contois', 'teissier',
         'moser', 'chen-hashimoto', 'andrews', 'ierusalimsky'
     ])
     n = st.number_input("Moser: n", value=1.5)
-    S0_moser = st.number_input("S0 (Chen-H/Ref S)", value=100.0)
+    S0_moser = st.number_input("S0", value=100.0)
     k_CH = st.number_input("k_CH", value=0.2)
     K_P = st.number_input("K_P", value=300.0)
 
