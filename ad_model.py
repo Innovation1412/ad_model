@@ -4,6 +4,7 @@ import matplotlib.pyplot as plt
 from scipy.integrate import solve_ivp
 
 st.set_page_config(page_title="Anaerobic Digestion Model", layout="wide")
+st.write("EMAIL_ADDRESS" in st.secrets)
 st.title("Anaerobic Digestion Simulator")
 
 # Sidebar Controls
