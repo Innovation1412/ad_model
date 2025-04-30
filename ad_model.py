@@ -178,13 +178,11 @@ with st.form("feedback_form"):
                 from email.mime.text import MIMEText
                 import smtplib
                 import os
-                from dotenv import load_dotenv
 
-                load_dotenv()
-                EMAIL_ADDRESS = os.getenv("EMAIL_ADDRESS")
-                EMAIL_PASSWORD = os.getenv("EMAIL_PASSWORD")
-                TO_EMAIL = os.getenv("TO_EMAIL")
-
+                EMAIL_ADDRESS = st.secrets["EMAIL_ADDRESS"]
+                EMAIL_PASSWORD = st.secrets["EMAIL_PASSWORD"]
+                TO_EMAIL = st.secrets["TO_EMAIL"]
+                
                 content = f"Feedback from: {name}\nEmail: {email}\n\nMessage:\n{message}"
                 msg = MIMEText(content)
                 msg["Subject"] = "New Feedback from Streamlit App"
