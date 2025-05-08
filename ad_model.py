@@ -7,17 +7,46 @@ from pathlib import Path
 import streamlit.components.v1 as components
 
 
+
 st.set_page_config(page_title="Anaerobic Digestion Model", layout="wide")
 st.title("Anaerobic Digestion Simulator")
 
 st.markdown("### 📘 Quick Start Guide")
 
+#pdf_path = Path("problem1_description.pdf")
+#if pdf_path.exists():
+#    with open(pdf_path, "rb") as f:
+#        base64_pdf = base64.b64encode(f.read()).decode("utf-8")
+#    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600px" type="application/pdf"></iframe>'
+#    st.markdown(pdf_display, unsafe_allow_html=True)
+#else:
+#    st.warning("📄 The PDF user guide (problem1_description.pdf) was not found in the app folder.")
+
 pdf_path = Path("problem1_description.pdf")
+
 if pdf_path.exists():
     with open(pdf_path, "rb") as f:
-        base64_pdf = base64.b64encode(f.read()).decode("utf-8")
-    pdf_display = f'<iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600px" type="application/pdf"></iframe>'
+        pdf_data = f.read()
+        base64_pdf = base64.b64encode(pdf_data).decode("utf-8")
+
+    # Download button
+    st.download_button(
+        label="📄 Download PDF Guide",
+        data=pdf_data,
+        file_name="problem1_description.pdf",
+        mime="application/pdf"
+    )
+
+    # Info for Chrome users
+    st.info("👆 The embedded preview may not work in Chrome. If blocked, please use the download button above.")
+
+    # Inline PDF preview
+    pdf_display = f"""
+        <iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600px" type="application/pdf">
+        </iframe>
+    """
     st.markdown(pdf_display, unsafe_allow_html=True)
+
 else:
     st.warning("📄 The PDF user guide (problem1_description.pdf) was not found in the app folder.")
 
