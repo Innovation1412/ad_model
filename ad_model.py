@@ -37,16 +37,6 @@ if pdf_path.exists():
         mime="application/pdf"
     )
 
-    # Info for Chrome users
-    st.info("👆 The embedded preview may not work in Chrome. If blocked, please use the download button above.")
-
-    # Inline PDF preview
-    pdf_display = f"""
-        <iframe src="data:application/pdf;base64,{base64_pdf}" width="100%" height="600px" type="application/pdf">
-        </iframe>
-    """
-    st.markdown(pdf_display, unsafe_allow_html=True)
-
 else:
     st.warning("📄 The PDF user guide (problem1_description.pdf) was not found in the app folder.")
 
